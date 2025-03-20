@@ -13,22 +13,21 @@ body {
   margin-bottom: 20px;
 }
 
-/* 初回は右端から流れ始める（調整例） */
 #question {
   display: inline-block;
   position: absolute;
-  top: 100px;       /* 新潟の上あたりに調整（必要に応じて変更） */
-  left: 100vw;      /* 画面の右端から開始 */
+  top: 100px;       /* 新潟の上に表示（必要に応じて調整） */
+  left: 100vw;      /* 画面右端から開始 */
   white-space: nowrap;
 }
 
-/* 問題文が右から左へ流れるアニメーション */
+/* 右から左へ流れるアニメーション */
 @keyframes scrollText {
-  0% { transform: translateX(100vw); }
+  0%   { transform: translateX(100vw); }
   100% { transform: translateX(-100vw); }
 }
 
-/* 画像表示用のグリッドレイアウト */
+/* 画像表示用のグリッド */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -52,7 +51,7 @@ body {
   object-fit: contain;
 }
 
-/* 都道府県名のラベル（3回目のアニメーション終了後に表示） */
+/* 都道府県名のラベル（3回目の流れ終了後に表示） */
 .pref-label {
   position: absolute;
   top: 0;
