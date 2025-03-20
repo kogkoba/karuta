@@ -39,7 +39,7 @@ function nextQuestion() {
   const questionData = questions[Math.floor(Math.random() * questions.length)];
   const questionElement = document.getElementById('question');
 
-  // 問題文を設定し、右端から流れ始めるようにする
+  // 問題文を設定し、画面右端から流れ始める
   questionElement.innerText = questionData.question;
   questionElement.style.animation = 'none';
   questionElement.style.left = '100vw';
@@ -58,7 +58,7 @@ function scrollTextAnimation(element, questionData) {
       scrollTextAnimation(element, questionData);
     }, { once: true });
   } else {
-    // 3回目のアニメーション終了後、中央に固定して背景を付ける
+    // 3回目の流れた後、中央に固定して背景を付ける
     element.style.animation = 'none';
     element.style.left = '50%';
     element.style.transform = 'translateX(-50%)';
@@ -73,7 +73,7 @@ function showCards(showLabels, questionData) {
   let choicesSet = new Set();
   choicesSet.add(questionData.answer);
 
-  // 正解を含む6つの選択肢が重複しないようにする
+  // 重複なく6つの選択肢を生成
   while (choicesSet.size < 6) {
     let randomChoice = questions[Math.floor(Math.random() * questions.length)].answer;
     choicesSet.add(randomChoice);
@@ -88,7 +88,7 @@ function showCards(showLabels, questionData) {
 
   let cardsHTML = '<div class="grid-container">';
   choices.forEach((pref) => {
-    // 画像のパスは、index.html から見た相対パス
+    // 画像のパスは、index.html から見た相対パス (images フォルダは同じディレクトリ内)
     let imgPath = `./images/${pref.answer}`;
     console.log("🖼 画像のパス:", imgPath);
     cardsHTML += `<div class="grid-item">
@@ -104,8 +104,8 @@ function checkAnswer(selected, answer) {
   if (selected === answer) {
     points += 10;
     document.getElementById('points').innerText = points;
-    document.getElementById('question').style.animation = 'none'; // アニメーション停止
-    setTimeout(nextQuestion, 500); // 正解の場合、次の問題へ即移動
+    document.getElementById('question').style.animation = 'none';
+    setTimeout(nextQuestion, 500);
   } else {
     alert(`不正解！正解は ${answer} です。`);
   }
